@@ -1,0 +1,23 @@
+h2{
+    color: #8b0023;
+    text-align: center;
+    font-family: "sans-serif";
+    font-size: 30px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rebeccapurple;
+}
+td,th{
+    border: 2px solid red;
+    padding: 10px;
+}
+th{
+    color: red;
+    font-family: MathJax_Typewriter;
+}
+td{
+    color: white;
+    font-family: "DejaVu Sans Mono";
+}

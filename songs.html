@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Music Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            padding: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ff0000;
+            color: white;
+            cursor: pointer;
+        }
+        .results-container {
+            margin-top: 20px;
+        }
+        .results-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .results-container li {
+            margin-bottom: 10px;
+        }
+        iframe {
+            margin-top: 20px;
+            width: 100%;
+            height: 360px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchQuery" placeholder="Search for a song...">
+        <button onclick="searchYouTube()">Search</button>
+    </div>
+    <div class="results-container" id="results">
+        <ul></ul>
+    </div>
+    <iframe id="player" src="" allow="autoplay"></iframe>
+
+    <script>
+        function searchYouTube() {
+            const query = document.getElementById('searchQuery').value;
+            const resultsContainer = document.getElementById('results').getElementsByTagName('ul')[0];
+            resultsContainer.innerHTML = '';
+
+            const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

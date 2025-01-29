@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-image: url('static/images/wp13196125-modern-technology-wallpapers.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            color: red;
+            font-size: 20px;
+            display: none;
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/mystyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration</title>
+</head>
+<body>
+
+<div class="container">
+    <!-- Start of login form -->
+    <div id="login-form">
+        <h2>Login</h2>
+        <form action="login_process.php" method="POST">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="Email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="Password" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" id="login-button">Login</button>
+            <a href="http://localhost:63342/umoja/umoja.html?_ijt=hb9kdj124tn20oht90rpo1btn&_ij_reload=RELOAD_ON_SAVE">back</a>
+        </form>
+    </div>
+    <!-- End of login form -->
+
+    <!-- Start of registration form -->
+    <div id="registration-form">
+        <h2>Register</h2>
+        <form action="register_process.php" method="POST">
+            <div class="form-group">
+                <label for="register-name">Full Name</label>
+                <input type="text" id="register-name" name="Full_Name" placeholder="Enter Full Name" required>
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" name="Email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" name="Password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="gender" value="female">
+            </div>
+            <button type="submit" id="register-button">Register</button>
+        </form>
+    </div>
+    <!-- End of registration form -->
+
+    <div id="message">Stop cheating! Use the mouse!</div>
+</div>
+
+<div class="content">
+    <!-- Add any additional content here -->
+</div>
+
+<script>
+    // Handle mouse movement for button repelling effect
+    let loginButton = document.getElementById("login-button");
+    let registerButton = document.getElementById("register-button");
+    let message = document.getElementById("message");
+
+    // Adjust the speed of the button's movement
+    let repellingSpeed = 20;
+
+    function moveButtonAway(event, button) {
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
+
+        let buttonRect = button.getBoundingClientRect();
+        let buttonX = buttonRect.left + buttonRect.width / 2;
+        let buttonY = buttonRect.top + buttonRect.height / 2;
+
+        let deltaX = mouseX - buttonX;
+        let deltaY = mouseY - buttonY;
+
+        let angle = Math.atan2(deltaY, deltaX);
+        let distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        // Move the button away from the mouse
+        let moveX = Math.cos(angle) * repellingSpeed;
+        let moveY = Math.sin(angle) * repellingSpeed;
+
+        // Apply the movement to the button
+        button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    }
+
+    // Mouse move event listener
+    document.addEventListener("mousemove", (event) => {
+        moveButtonAway(event, loginButton);
+        moveButtonAway(event, registerButton);
+    });
+
+    // Keyboard "Enter" press handler
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission
+            message.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>
